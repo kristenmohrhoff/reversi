@@ -117,7 +117,7 @@ io.sockets.on('connection', function (socket) {
       var error_message = 'join_room couldn\'t create a room (internal error), command aborted';
 
         log(error_message);
-        socket.emit('join_room_response',  { 
+        socket.emit('join_room_response',  {
                                             result: 'fail',
                                             message: error_message
                                           });
