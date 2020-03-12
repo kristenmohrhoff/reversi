@@ -20,6 +20,11 @@ if('undefined' == typeof username || !username){
 
 var chat_room = 'One_Room';
 
+<<<<<<< HEAD
+=======
+$('#messages').append('<h4>'+username+'</h4>');
+
+>>>>>>> b3ff09768c7778487e5a6e3fc9bf23a42149e3da
 
 /* Connect to the socket server */
 
@@ -27,6 +32,7 @@ var socket = io.connect();
 
 socket.on('log',function(array){
   console.log.apply(console,array);
+<<<<<<< HEAD
 });
 
 socket.on('join_room_response',function(payload){
@@ -65,3 +71,6 @@ $(function(){
   console.log('*** Client Log Message: \'join_room\' payload: '+JSON.stringify(payload));
   socket.emit('join_room',payload);
 });
+=======
+  });
+>>>>>>> b3ff09768c7778487e5a6e3fc9bf23a42149e3da

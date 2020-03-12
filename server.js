@@ -55,6 +55,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('disconnect',function(socket){
     log('A web site disconnected from the server');
   });
+<<<<<<< HEAD
 
 /*join_room command */
 /*payload:
@@ -208,4 +209,6 @@ io.sockets.on('connection', function (socket) {
       log('Message sent to room ' + room + ' by ' + username);
     });
 
+=======
+>>>>>>> b3ff09768c7778487e5a6e3fc9bf23a42149e3da
 });
