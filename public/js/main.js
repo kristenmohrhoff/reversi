@@ -27,11 +27,9 @@ var socket = io.connect();
 
 socket.on('log',function(array){
   console.log.apply(console,array);
-
 });
 
 socket.on('join_room_response',function(payload){
-  console.log('here');
   if(payload.result == 'fail'){
     alert(payload.message);
     return;
@@ -40,7 +38,6 @@ socket.on('join_room_response',function(payload){
 });
 
 socket.on('send_message_response',function(payload){
-  console.log('here');
   if(payload.result == 'fail'){
     alert(payload.message);
     return;
@@ -65,5 +62,4 @@ $(function(){
 
   console.log('*** Client Log Message: \'join_room\' payload: '+JSON.stringify(payload));
   socket.emit('join_room',payload);
-});
 });

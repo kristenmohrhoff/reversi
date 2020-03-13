@@ -134,7 +134,7 @@ io.sockets.on('connection', function (socket) {
         log('Room '+ room + ' was just joined by '+ username);
       });
 
-/*sned_message command */
+/*send_message command */
 /* payload:
    {
       'room': room to join,
@@ -152,6 +152,7 @@ io.sockets.on('connection', function (socket) {
       'room': failure message
     }
     */
+
     socket.on('send_message',function(payload){
       log('server recieved a command','send_message',payload);
       if(('undefined' === typeof payload) || !payload){
