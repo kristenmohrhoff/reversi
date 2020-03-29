@@ -103,7 +103,7 @@ socket.on('player_disconnected',function(payload){
 
   /* If something exists */
   if(dom_elements.length != 0){
-    dome_elements.slideUp(1000);
+    dom_elements.slideUp(1000);
   }
 
 /* Manage the message that a player has left */
