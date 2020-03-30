@@ -107,11 +107,11 @@ socket.on('player_disconnected',function(payload){
   }
 
 /* Manage the message that a player has left */
-  var newHTML = '<p>'+payload.username+' has left the lobby</p>';
-  var newNode = $(newHTML);
-  newNode.hide();
-  $('#messages').append(newNode);
-  newNode.slideDown(1000);
+var newHTML = '<p>'+payload.username+' has left the lobby</p>';
+var newNode = $(newHTML);
+newNode.hide();
+$('#messages').append(newNode);
+newNode.slideDown(1000);
 });
 
 
