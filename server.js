@@ -157,7 +157,7 @@ io.sockets.on('connection', function (socket) {
           var username = players[socket.id].username;
           var room = players[socket.id].room;
           var payload = {
-                        usermane: username,
+                        username: username,
                         socket_id: socket.id
           };
           delete players[socket.id];
