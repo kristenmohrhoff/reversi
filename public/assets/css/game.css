@@ -1,0 +1,38 @@
+body {
+  background-image: url('../images/green_background.png');
+            }
+
+#name-title{
+  color: gold;
+  font-size: 50px;
+}
+
+table#game_board {
+  margin: auto;
+  border-style: solid;
+  border-width: 10px;
+  border-color: rgb(160,82,45);
+}
+
+table#game_board td{
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(150,150,150);
+}
+
+#messages p {
+  margin: 0px;
+  color: rgb(255,255,255);
+}
+
+h3#message_title{
+  size: 50px;
+  margin: auto;
+  color: rgb(218,165,32);
+}
+
+td.hovered_over:hover {
+  background:url('../images/hover.gif');
+  background-size: 100% 100%;
+}
