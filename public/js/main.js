@@ -285,6 +285,8 @@ var old_board = [
                 ];
 
 var my_color = ' ';
+var interval_timer;
+
 
 socket.on('game_update',function(payload){
 
@@ -296,7 +298,7 @@ socket.on('game_update',function(payload){
     return;
   }
 
-  /*Check for a good board in the payload */
+  /* Check for a good board in the payload */
   var board = payload.game.board;
   if('undefined' == typeof board || !board){
     console.log('Internal error: recieved a malformed board update from the server');
@@ -318,6 +320,25 @@ socket.on('game_update',function(payload){
       }
 
       $('#my_color').html('<h3 id="my_color">You are the '+my_color+' player.</h3>');
+      $('#my_color').append('<h4>It is '+payload.game.whose_turn+'\'s turn. Time since last play: <span id="elapsed"></span></h4>');
+
+      clearInterval(interval_timer);
+      interval_timer = setInterval( function(last_time){
+        return function(){
+                // Do the work of updating the UI
+                var d = new Date();
+                var elapsedmilli = d.getTime() - last_time;
+                var minutes = Math.floor(elapsedmilli / (60 * 1000));
+                var seconds = Math.floor((elapsedmilli % (60 * 1000))/ 1000);
+
+                if(seconds < 10){
+                  $('#elapsed').html(minutes+':0'+seconds);
+                }
+                else{
+                  $('#elapsed').html(minutes+':'+seconds);
+                }
+        }}(payload.game.last_move_time)
+        , 1000);
 
   /* Animate changes to the board */
 
@@ -366,9 +387,14 @@ socket.on('game_update',function(payload){
         else {
           $('#'+row+'_'+column).html('<img src="assets/images/error.gif" alt="error"/>');
         }
-        /* Set up interactivity */
-        $('#'+row+'_'+column).off('click');
-        if(board[row][column] == ' '){
+      }
+
+    /* Set up interactivity */
+    $('#'+row+'_'+column).off('click');
+    $('#'+row+'_'+column).removeClass('hovered_over');
+
+    if(payload.game.whose_turn === my_color){
+      if(payload.game.legal_moves[row][column] === my_color.substr(0,1)){
           $('#'+row+'_'+column).addClass('hovered_over');
           $('#'+row+'_'+column).click(function(r,c){
                     return function(){
@@ -380,9 +406,6 @@ socket.on('game_update',function(payload){
                         socket.emit('play_token',payload);
                     };
           }(row,column));
-        }
-        else{
-            $('#'+row+'_'+column).removeClass('hovered_over');
         }
       }
     }
@@ -416,6 +439,6 @@ socket.on('play_token_response',function(payload){
 
   /* Jump to a new page */
   $('#game_over').html('<h1>Game Over</h1><h2>'+payload.who_won+' won!</h2>');
-  $('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-warning btn-lrg active" role="button" aria-pressed="true">Return to the lobby</a>');
+  $('#game_over').append('<a href="lobby.html?username='+username+'" id="return_button" class="btn btn-warning btn-lrg active" role="button" aria-pressed="true">Return to the lobby</a>');
 
 });
