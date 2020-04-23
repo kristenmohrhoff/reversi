@@ -410,8 +410,8 @@ socket.on('game_update',function(payload){
       }
     }
   }
-  $('#blacksum').html(blacksum);
-  $('#whitesum').html(whitesum);
+  $('#blacksum').html('<h5 id="blacknum">Black score: '+blacksum+'</h5>');
+  $('#whitesum').html('<h5 id="whitenum">White score: '+whitesum+'</h5>');
 
   old_board = board;
 });

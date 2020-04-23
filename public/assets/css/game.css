@@ -2,9 +2,32 @@ body {
   background-image: url('../images/green_background.png');
             }
 
+#gameheader{
+  padding-top:20px;
+}
+
 #name-title{
   color: gold;
   font-size: 50px;
+}
+
+#score_row{
+  padding-top: 20px;
+}
+
+#blacknum h5{
+  size:5px
+  color: rgb(255,255,255);
+}
+
+#whitenum h5{
+  size:5px
+  color: rgb(255,255,255);
+}
+
+h5{
+  size: 15px;
+  color: rgb(255,255,255);
 }
 
 table#game_board {
@@ -26,10 +49,15 @@ table#game_board td{
   color: rgb(255,255,255);
 }
 
-h3#message_title{
-  size: 50px;
+h3{
+  size: 30px;
   margin: auto;
   color: rgb(218,165,32);
+}
+
+#sums{
+  color: gold;
+  size: 15px;
 }
 
 td.hovered_over:hover {
